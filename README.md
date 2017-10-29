@@ -1,5 +1,5 @@
-# sjsm
-A simple java send mail command line application.
+# Simple Java Send Mail (sjsm)
+A simple command line application for sending mails.
 
 ## Why?
 Sometimes it's nice to have a way to send an email without installing anything on the system.
@@ -23,7 +23,7 @@ Make sure you have Java 8 installed on your machine.
 | -from | Sender's email address | yes | "from.not.exist@no-where-no-no.com" |
 | -to | Receiver's email address | yes | "to.not.exist@no-where-no-no.com" |
 | -subject | Mail subject | yes | "My subject" |
-| -message | Message body (TEXT or HTML) | yes | "<html><body><h1>This is a test mail</h1></body></html>" |
+| -message | Message body (TEXT or HTML) | yes | "&lt;html&gt;&lt;body&gt;&lt;h1&gt;This is a test mail&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;" |
 | -html | - | no | - |
 | -charset | Mail encoding (defaults to "utf-8") | no | "utf-8"  |
 
