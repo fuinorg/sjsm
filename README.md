@@ -53,7 +53,7 @@ Make sure you have Java 8 installed on your machine.
 		-html \
 
 ## CAUTION
-<span style="color:red"><b>Be aware that passing your password via the command line will most probably be visible in your command line history.</b></span>
+<b>Be aware that passing your password via the command line will most probably be visible in your command line history.</b>
 
 * * *
 
