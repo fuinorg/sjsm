@@ -11,6 +11,8 @@ A simple command line application for sending mails.
 ## Why?
 Sometimes it's nice to have a way to send an email without installing anything on the system.
 For example it could be used in an AWS CodeBuild "buildspec.yml" to send a mail on a failing build.
+It's like [sSMTP](https://help.ubuntu.com/community/EmailAlerts), but without a configuration file.
+Only command line arguments are used to configure mail server, receiver, message and other stuff. 
 
 ## Requirements
 Make sure you have Java 8 installed on your machine.
