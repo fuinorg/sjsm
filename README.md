@@ -9,7 +9,7 @@ A simple command line application for sending mails.
 <a href="https://fuin-org.ci.cloudbees.com/job/sjsm"><img src="http://www.fuin.org/images/Button-Built-on-CB-1.png" width="213" height="72" border="0" alt="Built on CloudBees"/></a>
 
 ## Why?
-Sometimes it's nice to have a way to send an email without installing anything on the system.
+Sometimes it's nice to have a way to send an email without installing anything (except Java) on the system.
 For example it could be used in an AWS CodeBuild "buildspec.yml" to send a mail on a failing build.
 It's like [sSMTP](https://help.ubuntu.com/community/EmailAlerts), but without a configuration file.
 Only command line arguments are used to configure mail server, receiver, message and other stuff. 
