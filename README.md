@@ -17,7 +17,7 @@ Only command line arguments are used to configure mail server, receiver, message
 ## Requirements
 Make sure you have Java 8 installed on your machine.
 
-## Running the app
+## Running the application
 
 	java -jar sjsm-0.1.0.jar <arguments>
 
