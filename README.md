@@ -57,7 +57,7 @@ Make sure you have Java 8 installed on your machine.
 		-pw "xxxxxxx" \
 		-from "from.not.exist@no-where-no-no.com" \
 		-to "to.not.exist@no-where-no-no.com" \
-		-subject "My subject" \
+		-subject "My html subject" \
 		-message "<html><body><h1>This is a test mail</h1></body></html>" \
 		-html \
 
