@@ -1,7 +1,9 @@
 .*
 !.gitignore
 !.gitkeep
-**/target
-**/META-INF
+!.checkstyle
+!.mvn
+target
+META-INF
 *.log
 dependency-reduced-pom.xml
