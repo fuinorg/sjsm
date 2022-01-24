@@ -53,3 +53,37 @@ jobs:
         OSS_SONATYPE_TOKEN: ${{ secrets.OSS_SONATYPE_TOKEN }}
         OSS_SONATYPE_GPG_PASSPHRASE: ${{ secrets.OSS_SONATYPE_GPG_PASSPHRASE }}
       run: ./mvnw clean deploy -U -B -P sonatype-oss-release --file pom.xml -s settings.xml
+      
+    - name: Project properties as ENV variables
+      run: |
+        cat ${{ github.workspace }}/target/classes/project.properties | grep "^[^#;]" >> $GITHUB_ENV
+
+    - name: Tag on build
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}          
+        script: |
+          try {
+              await github.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: "tags/${{ env.maven_version }}"
+              })
+          } catch (e) {
+            console.log("The ${{ env.maven_version }} tag doesn't exist yet: " + e)
+          }
+          await github.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: "refs/tags/${{ env.maven_version }}",
+            sha: context.sha
+          })
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ${{ env.maven_version }}
+        tag_name: ${{ env.maven_version }}
+        files: |
+          ${{ github.workspace }}/target/sjsm-${{ env.maven_version }}.jar
+

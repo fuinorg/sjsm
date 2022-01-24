@@ -35,12 +35,6 @@
 		<!-- Compile -->
 
         <dependency>
-            <groupId>jakarta.mail</groupId>
-            <artifactId>jakarta.mail-api</artifactId>
-            <version>1.6.4</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
             <version>1.6.4</version>
@@ -109,8 +103,67 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>com.internetitem</groupId>
+				<artifactId>write-properties-file-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>one</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>write-properties-file</goal>
+						</goals>
+						<configuration>
+							<filename>project.properties</filename>
+							<properties>
+								<property>
+									<name>maven_version</name>
+									<value>${project.version}</value>
+								</property>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 
+		<pluginManagement>
+		
+		    <plugins>
+		    
+		        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+		        <plugin>
+		            <groupId>org.eclipse.m2e</groupId>
+		            <artifactId>lifecycle-mapping</artifactId>
+		            <version>1.0.0</version>
+		            <configuration>
+		                <lifecycleMappingMetadata>
+		                    <pluginExecutions>
+		                        <pluginExecution>
+		                            <pluginExecutionFilter>
+		                                <groupId>com.internetitem</groupId>
+		                                <artifactId>write-properties-file-maven-plugin</artifactId>
+		                                <versionRange>[1.0.1,)</versionRange>
+		                                <goals>
+		                                    <goal>write-properties-file</goal>
+		                                </goals>
+		                            </pluginExecutionFilter>
+		                            <action>
+		                                <ignore />
+		                            </action>
+		                        </pluginExecution>
+		                    </pluginExecutions>
+		                </lifecycleMappingMetadata>
+		            </configuration>
+		        </plugin>
+		        
+		    </plugins>
+		    
+		</pluginManagement>
+		
 	</build>
 
 </project>

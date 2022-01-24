@@ -20,6 +20,7 @@ Only command line arguments are used to configure mail server, receiver, message
 Make sure you have Java 11 installed on your machine.
 
 ## Running the application
+You can download the latest JAR file here: https://github.com/fuinorg/sjsm/releases
 
 	java -jar sjsm-0.2.0-SNAPSHOT.jar <arguments>
 
