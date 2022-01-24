@@ -1,10 +1,14 @@
 # Simple Java Send Mail (sjsm)
 A simple command line application for sending mails.
 
-[![Build Status](https://jenkins.fuin.org/job/sjsm/badge/icon)](https://jenkins.fuin.org/job/sjsm/)
+[![Java Maven Build](https://github.com/fuinorg/sjsm/actions/workflows/maven.yml/badge.svg)](https://github.com/fuinorg/sjsm/actions/workflows/maven.yml)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin/sjsm/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin/sjsm/)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
-[![Java Development Kit 1.8](https://img.shields.io/badge/JDK-1.8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+[![Java Development Kit 11](https://img.shields.io/badge/JDK-11-green.svg)](https://openjdk.java.net/projects/jdk/11/)
+
+## Versions
+- 0.2.x = **Java 11** before namespace change from 'javax' to 'jakarta'
+- 0.1.0 = **Java 8**
 
 ## Why?
 Sometimes it's nice to have a way to send an email without installing anything (except Java) on the system.
@@ -13,11 +17,11 @@ It's like [sSMTP](https://help.ubuntu.com/community/EmailAlerts), but without a 
 Only command line arguments are used to configure mail server, receiver, message and other stuff. 
 
 ## Requirements
-Make sure you have Java 8 installed on your machine.
+Make sure you have Java 11 installed on your machine.
 
 ## Running the application
 
-	java -jar sjsm-0.1.0.jar <arguments>
+	java -jar sjsm-0.2.0-SNAPSHOT.jar <arguments>
 
 ## Command line arguments
 
@@ -36,7 +40,7 @@ Make sure you have Java 8 installed on your machine.
 
 ## TEXT example
 
-	java -jar sjsm-0.1.0.jar \
+	java -jar sjsm-0.2.0-SNAPSHOT.jar \
 		-host "smtp.no-where-no-no.com" \
 		-port 465 \
 		-user "acc12345_from.not.exist" \
@@ -48,7 +52,7 @@ Make sure you have Java 8 installed on your machine.
 
 ## HTML example
 
-	java -jar sjsm-0.1.0.jar \
+	java -jar sjsm-0.2.0-SNAPSHOT.jar \
 		-host "smtp.no-where-no-no.com" \
 		-port 465 \
 		-user "acc12345_from.not.exist" \

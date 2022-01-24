@@ -5,18 +5,18 @@
 
 	<parent>
 		<groupId>org.fuin</groupId>
-		<artifactId>pom-osgi</artifactId>
-		<version>1.6.0</version>
+		<artifactId>pom</artifactId>
+		<version>1.7.0</version>
 	</parent>
 
 	<artifactId>sjsm</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<description>A simple java send mail command line application</description>
 	<url>https://github.com/fuinorg/sjsm/</url>
 
 	<prerequisites>
-		<maven>3.2.0</maven>
+		<maven>3.6.0</maven>
 	</prerequisites>
 
 	<scm>
@@ -34,11 +34,17 @@
 
 		<!-- Compile -->
 
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
-		</dependency>
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>1.6.4</version>
+        </dependency>
 
 		<dependency>
 			<groupId>args4j</groupId>
@@ -49,7 +55,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.1.7</version>
+			<version>1.2.0</version>
 		</dependency>
 
 		<!-- Test -->
@@ -57,14 +63,14 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>3.8.0</version>
+            <version>3.20.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -84,7 +90,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.2.4</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
