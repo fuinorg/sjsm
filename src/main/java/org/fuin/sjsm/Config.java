@@ -17,14 +17,12 @@
  */
 package org.fuin.sjsm;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -74,6 +72,9 @@ public final class Config {
 
     @Option(name = "-noauth", usage = "SMTP without authentication")
     private boolean noauth;
+
+    @Option(name = "-important", usage = "Send High Priority Email")
+    private boolean important;
 
     /**
      * Returns the host.
@@ -149,6 +150,25 @@ public final class Config {
      */
     public void setPw(final String pw) {
         this.pw = pw;
+    }
+
+    /**
+     * Returns the password.
+     *
+     * @return Authentication password.
+     */
+    public boolean getImportant() {
+        return important;
+    }
+
+    /**
+     * Sets the password.
+     *
+     * @param pw
+     *            Authentication password.
+     */
+    public void setImportant(final boolean important) {
+        this.important = important;
     }
 
     /**
@@ -320,9 +340,9 @@ public final class Config {
      */
     public String getContentType() {
         if (html) {
-            return "text/html";
+            return "text/html; charset=" + charset;
         }
-        return "text/plain";
+        return "text/plain; charset=" + charset;
     }
 
     /**
@@ -445,8 +465,24 @@ public final class Config {
             msg.setSubject(subject, getCharset());
             msg.setContent(message, getContentType());
             msg.setSentDate(new Date());
-            msg.setRecipients(Message.RecipientType.TO,
+            if (this.getImportant()) {
+                msg.setHeader("X-Priority", "1");
+            }
+            if (this.getReceiver().indexOf(";") != -1) {
+                String[] addresses = this.getReceiver().split(";");
+                List<Address> addressList = new ArrayList<>();
+                for (int i = 0; i < addresses.length; i++) {
+                    if (addresses[i] != null && !addresses[i].equals("")) {
+                        addressList.add(new InternetAddress(addresses[i]));
+                    }
+                }
+                msg.setRecipients(Message.RecipientType.TO,
+                    addressList.toArray(new InternetAddress[0]));
+            } else {
+                msg.setRecipients(Message.RecipientType.TO,
                     new InternetAddress[] { getReceiverAddress() });
+            }
+
             return msg;
         } catch (final MessagingException ex) {
             throw new RuntimeException(
