@@ -320,9 +320,9 @@ public final class Config {
      */
     public String getContentType() {
         if (html) {
-            return "text/html";
+            return "text/html; charset=" + charset;
         }
-        return "text/plain";
+        return "text/plain; charset=" + charset;
     }
 
     /**
