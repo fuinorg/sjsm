@@ -2,7 +2,6 @@
 A simple command line application for sending mails.
 
 [![Java Maven Build](https://github.com/fuinorg/sjsm/actions/workflows/maven.yml/badge.svg)](https://github.com/fuinorg/sjsm/actions/workflows/maven.yml)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin/sjsm/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin/sjsm/)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
 [![Java Development Kit 11](https://img.shields.io/badge/JDK-11-green.svg)](https://openjdk.java.net/projects/jdk/11/)
 
@@ -12,7 +11,7 @@ A simple command line application for sending mails.
 
 ## Why?
 Sometimes it's nice to have a way to send an email without installing anything (except Java) on the system.
-For example it could be used in an AWS CodeBuild "buildspec.yml" to send a mail on a failing build.
+For example, it could be used in an AWS CodeBuild "buildspec.yml" to send a mail on a failing build.
 It's like [sSMTP](https://help.ubuntu.com/community/EmailAlerts), but without a configuration file.
 Only command line arguments are used to configure mail server, receiver, message and other stuff. 
 
@@ -70,22 +69,6 @@ You can download the latest JAR file here: https://github.com/fuinorg/sjsm/relea
 
 * * *
 
-## Snapshots
+## Snapshots & Releases
 
-Snapshots can be found on the [OSS Sonatype Snapshots Repository](http://oss.sonatype.org/content/repositories/snapshots/org/fuin "Snapshot Repository"). 
-
-Add the following to your .m2/settings.xml to enable snapshots in your Maven build:
-
-```xml
-<repository>
-    <id>sonatype.oss.snapshots</id>
-    <name>Sonatype OSS Snapshot Repository</name>
-    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-    <releases>
-        <enabled>false</enabled>
-    </releases>
-    <snapshots>
-        <enabled>true</enabled>
-    </snapshots>
-</repository>
-```
+There will be no more releases/snapshots on Maven Central but only [here](https://github.com/fuinorg/sjsm/releases).
