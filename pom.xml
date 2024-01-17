@@ -11,7 +11,7 @@
 
 	<artifactId>sjsm</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2.0</version>
+	<version>0.3.0-SNAPSHOT</version>
 	<description>A simple java send mail command line application</description>
 	<url>https://github.com/fuinorg/sjsm/</url>
 
