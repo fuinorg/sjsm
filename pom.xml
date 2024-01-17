@@ -34,11 +34,11 @@
 
 		<!-- Compile -->
 
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>jakarta.mail</artifactId>
-            <version>1.6.4</version>
-        </dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>args4j</groupId>
@@ -49,22 +49,22 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.0</version>
+			<version>1.4.14</version>
 		</dependency>
 
 		<!-- Test -->
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.1</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-            <version>3.20.2</version>
+			<version>3.24.2</version>
 			<scope>test</scope>
 		</dependency>
 

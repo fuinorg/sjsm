@@ -17,9 +17,9 @@
  */
 package org.fuin.sjsm;
 
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.MimeMessage;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;

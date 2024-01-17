@@ -22,30 +22,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.dumbster.smtp.SimpleSmtpServer;
 import com.dumbster.smtp.SmtpMessage;
 
-// CHECKSTYLE:OFF
-public class SendMailAppTest {
+/**
+ * Test for the {@link SendMailApp} class.
+ */
+class SendMailAppTest {
 
     private static SimpleSmtpServer dumbster;
 
-    @Before
-    public void setUp() throws IOException {
+    @BeforeEach
+    void setUp() throws IOException {
         dumbster = SimpleSmtpServer.start(SimpleSmtpServer.AUTO_SMTP_PORT);
     }
 
-    @After
-    public void tearDown() {
+    @AfterEach
+    void tearDown() {
         dumbster.close();
     }
 
     @Test
-    public void testSend() {
+    void testSendSingleReceiver() {
 
         // PREPARE
         final String subject = "Test message";
@@ -82,5 +84,42 @@ public class SendMailAppTest {
 
     }
 
+    @Test
+    void testSendMultipleReceiver() {
+
+        // PREPARE
+        final String subject = "Test message";
+        final String msg = "<html><body><h1>test</h1></body></html>";
+        final String sender = "test@fuin.org";
+        final String receiver = "other@fuin.org;not-existing@fuin.org";
+
+        final Config config = new Config();
+        config.setHost("localhost");
+        config.setPort(dumbster.getPort());
+        config.setUser("myaccount");
+        config.setPw("mypw");
+        config.setFrom(sender);
+        config.setReceiver(receiver);
+        config.setSubject(subject);
+        config.setMessage(msg);
+        config.setHtml(false);
+        config.setCharset("utf-8");
+        config.setSmtp(true);
+        config.setTimeout(1000);
+        config.setNoauth(true);
+
+        // TEST
+        new SendMailApp().send(config);
+
+        // VERIFY
+        final List<SmtpMessage> emails = dumbster.getReceivedEmails();
+        assertThat(emails).hasSize(1);
+        SmtpMessage email = emails.get(0);
+        assertThat(email.getHeaderValue("Subject")).isEqualTo(subject);
+        assertThat(email.getBody()).isEqualTo(msg);
+        assertThat(email.getHeaderValue("From")).isEqualTo(sender);
+        assertThat(email.getHeaderValue("To")).isEqualTo("other@fuin.org, not-existing@fuin.org");
+
+    }
+
 }
-// CHECKSTYLE:ON

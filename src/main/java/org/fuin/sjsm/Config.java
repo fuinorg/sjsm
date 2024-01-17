@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Michael Schnell. All rights reserved. 
+ * Copyright (C) 2015 Michael Schnell. All rights reserved.
  * http://www.fuin.org/
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -17,15 +17,12 @@
  */
 package org.fuin.sjsm;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
-import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.*;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 import org.kohsuke.args4j.Option;
 
@@ -73,12 +70,12 @@ public final class Config {
     @Option(name = "-noauth", usage = "SMTP without authentication")
     private boolean noauth;
 
-    @Option(name = "-important", usage = "Send High Priority Email")
+    @Option(name = "-important", usage = "Send High Priority Email (X-Priority)")
     private boolean important;
 
     /**
      * Returns the host.
-     * 
+     *
      * @return host.
      */
     public String getHost() {
@@ -87,7 +84,7 @@ public final class Config {
 
     /**
      * Sets the host to a new value.
-     * 
+     *
      * @param host
      *            host.
      */
@@ -97,7 +94,7 @@ public final class Config {
 
     /**
      * Returns the port.
-     * 
+     *
      * @return port.
      */
     public int getPort() {
@@ -106,7 +103,7 @@ public final class Config {
 
     /**
      * Sets the port to a new value.
-     * 
+     *
      * @param port
      *            port.
      */
@@ -116,7 +113,7 @@ public final class Config {
 
     /**
      * Returns the user.
-     * 
+     *
      * @return Authentication user.
      */
     public String getUser() {
@@ -125,7 +122,7 @@ public final class Config {
 
     /**
      * Sets the user.
-     * 
+     *
      * @param user
      *            Authentication user.
      */
@@ -135,7 +132,7 @@ public final class Config {
 
     /**
      * Returns the password.
-     * 
+     *
      * @return Authentication password.
      */
     public String getPw() {
@@ -144,7 +141,7 @@ public final class Config {
 
     /**
      * Sets the password.
-     * 
+     *
      * @param pw
      *            Authentication password.
      */
@@ -153,19 +150,19 @@ public final class Config {
     }
 
     /**
-     * Returns the password.
+     * Returns the important (X-Priority) flag.
      *
-     * @return Authentication password.
+     * @return {@literal true} if the "X-Priority" should be added, else {@literal false}.
      */
     public boolean getImportant() {
         return important;
     }
 
     /**
-     * Sets the password.
+     * Sets the important (X-Priority) flag.
      *
-     * @param pw
-     *            Authentication password.
+     * @param important
+     *            {@literal true} if the "X-Priority" should be added, else {@literal false}.
      */
     public void setImportant(final boolean important) {
         this.important = important;
@@ -173,7 +170,7 @@ public final class Config {
 
     /**
      * Returns the sender.
-     * 
+     *
      * @return Sender's email address,
      */
     public String getFrom() {
@@ -182,7 +179,7 @@ public final class Config {
 
     /**
      * Returns the sender as Internet address.
-     * 
+     *
      * @return Sender's email Internet address,
      */
     public InternetAddress getFromAddress() {
@@ -196,7 +193,7 @@ public final class Config {
 
     /**
      * Sets the sender.
-     * 
+     *
      * @param from
      *            Sender's email address,
      */
@@ -206,7 +203,7 @@ public final class Config {
 
     /**
      * Returns the receiver.
-     * 
+     *
      * @return Receiver's email address,
      */
     public String getReceiver() {
@@ -215,7 +212,7 @@ public final class Config {
 
     /**
      * Returns the receiver as Internet address.
-     * 
+     *
      * @return Receiver's email Internet address,
      */
     public InternetAddress getReceiverAddress() {
@@ -231,7 +228,7 @@ public final class Config {
 
     /**
      * Sets the receiver.
-     * 
+     *
      * @param receiver
      *            Receiver's email address,
      */
@@ -241,7 +238,7 @@ public final class Config {
 
     /**
      * Returns the message subject.
-     * 
+     *
      * @return Message subject.
      */
     public String getSubject() {
@@ -250,7 +247,7 @@ public final class Config {
 
     /**
      * Sets the message subject.
-     * 
+     *
      * @param subject
      *            Message subject.
      */
@@ -260,7 +257,7 @@ public final class Config {
 
     /**
      * Returns the message body.
-     * 
+     *
      * @return Text or HTML message.
      */
     public String getMessage() {
@@ -269,7 +266,7 @@ public final class Config {
 
     /**
      * Sets the message body.
-     * 
+     *
      * @param message
      *            Text or HTML message.
      */
@@ -279,7 +276,7 @@ public final class Config {
 
     /**
      * Determines if the message is a HTML message.
-     * 
+     *
      * @return True if it's an HTML message, else false (text message).
      */
     public boolean isHtml() {
@@ -288,7 +285,7 @@ public final class Config {
 
     /**
      * Sets the message type.
-     * 
+     *
      * @param html
      *            True for an HTML message, else false (text message).
      */
@@ -298,7 +295,7 @@ public final class Config {
 
     /**
      * Returns the message encoding.
-     * 
+     *
      * @return Encoding (Defaults to UTF-8).
      */
     public String getCharset() {
@@ -307,7 +304,7 @@ public final class Config {
 
     /**
      * Sets the message encoding.
-     * 
+     *
      * @param charset
      *            Charset to use (will be defaulted to UTF-8 if argument is
      *            <code>null</code>).
@@ -322,7 +319,7 @@ public final class Config {
 
     /**
      * Returns the content type and encoding.
-     * 
+     *
      * @return Content type and encoding.
      */
     public String getContentTypeAndEncoding() {
@@ -335,7 +332,7 @@ public final class Config {
 
     /**
      * Returns the content type only.
-     * 
+     *
      * @return Content type.
      */
     public String getContentType() {
@@ -347,7 +344,7 @@ public final class Config {
 
     /**
      * Send via (unsecured) SMTP.
-     * 
+     *
      * @return True for SMTP, else false (SMTPS).
      */
     public boolean isSmtp() {
@@ -356,7 +353,7 @@ public final class Config {
 
     /**
      * Send via (unsecured) SMTP.
-     * 
+     *
      * @param smtp
      *            True for SMTP, else false (SMTPS).
      */
@@ -366,7 +363,7 @@ public final class Config {
 
     /**
      * Returns the timeout in milliseconds.
-     * 
+     *
      * @return Milliseconds until timeout.
      */
     public int getTimeout() {
@@ -375,7 +372,7 @@ public final class Config {
 
     /**
      * Sets the timeout in milliseconds.
-     * 
+     *
      * @param timeout
      *            Milliseconds until timeout.
      */
@@ -385,7 +382,7 @@ public final class Config {
 
     /**
      * Authentication disabled.
-     * 
+     *
      * @return True if SMTP without authentication is required.
      */
     public boolean isNoauth() {
@@ -394,7 +391,7 @@ public final class Config {
 
     /**
      * Authentication disabled.
-     * 
+     *
      * @param noauth
      *            True if SMTP without authentication is required.
      */
@@ -404,7 +401,7 @@ public final class Config {
 
     /**
      * Returns the transport type.
-     * 
+     *
      * @return Either "smtp" or "smtps" (default).
      */
     public String getTransportType() {
@@ -416,7 +413,7 @@ public final class Config {
 
     /**
      * Returns the session properties based on the configuration.
-     * 
+     *
      * @return Properties.
      */
     public Properties createSessionProperties() {
@@ -437,7 +434,7 @@ public final class Config {
 
     /**
      * Returns an authenticator based on user/pw.
-     * 
+     *
      * @return New authenticator instance.
      */
     public Authenticator createAuthenticator() {
@@ -450,10 +447,10 @@ public final class Config {
 
     /**
      * Creates a message from the configuration.
-     * 
+     *
      * @param session
      *            Session to create a message for.
-     * 
+     *
      * @return Message connected with the session.
      */
     public MimeMessage createMimeMessage(final Session session) {
@@ -468,21 +465,7 @@ public final class Config {
             if (this.getImportant()) {
                 msg.setHeader("X-Priority", "1");
             }
-            if (this.getReceiver().indexOf(";") != -1) {
-                String[] addresses = this.getReceiver().split(";");
-                List<Address> addressList = new ArrayList<>();
-                for (int i = 0; i < addresses.length; i++) {
-                    if (addresses[i] != null && !addresses[i].equals("")) {
-                        addressList.add(new InternetAddress(addresses[i]));
-                    }
-                }
-                msg.setRecipients(Message.RecipientType.TO,
-                    addressList.toArray(new InternetAddress[0]));
-            } else {
-                msg.setRecipients(Message.RecipientType.TO,
-                    new InternetAddress[] { getReceiverAddress() });
-            }
-
+            msg.setRecipients(Message.RecipientType.TO, convertToInternetAddress(extractRecipients(getReceiver())));
             return msg;
         } catch (final MessagingException ex) {
             throw new RuntimeException(
@@ -491,5 +474,47 @@ public final class Config {
                     ex);
         }
     }
+
+    /**
+     * Splits the string into a list of receivers.
+     *
+     * @param receiver One or more email addresses separated with a semicolon.
+     * @return List of receivers.
+     */
+    static List<String> extractRecipients(final String receiver) {
+        Objects.requireNonNull(receiver, "receiver == null");
+        final List<String> recipients = new ArrayList<>();
+        final StringTokenizer tok = new StringTokenizer(receiver, ";");
+        while (tok.hasMoreTokens()) {
+            final String recipient = tok.nextToken().trim();
+            if (!recipient.isEmpty()) {
+                recipients.add(recipient);
+            }
+        }
+        return recipients;
+    }
+
+    /**
+     * Converts a list of recipients into an address array.
+     *
+     * @param recipients List of receivers to convert.
+     *
+     * @return Array with addresses constructed from the given list.
+     */
+    static Address[] convertToInternetAddress(List<String> recipients) {
+        Objects.requireNonNull(recipients, "recipients == null");
+        final List<Address> list = new ArrayList<>();
+        for (final String recipient : recipients) {
+            if (recipient != null && !recipient.isEmpty()) {
+                try {
+                    list.add(new InternetAddress(recipient));
+                } catch (final AddressException ex) {
+                    throw new RuntimeException("Not a valid email address: '" + recipient +  "'", ex);
+            }
+            }
+        }
+        return list.toArray(new Address[0]);
+    }
+
 
 }
