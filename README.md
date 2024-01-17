@@ -22,7 +22,7 @@ Make sure you have Java 11 installed on your machine.
 ## Running the application
 You can download the latest JAR file here: https://github.com/fuinorg/sjsm/releases
 
-	java -jar sjsm-0.2.0-SNAPSHOT.jar <arguments>
+	java -jar sjsm-0.2.0.jar <arguments>
 
 ## Command line arguments
 
@@ -41,7 +41,7 @@ You can download the latest JAR file here: https://github.com/fuinorg/sjsm/relea
 
 ## TEXT example
 
-	java -jar sjsm-0.2.0-SNAPSHOT.jar \
+	java -jar sjsm-0.2.0.jar \
 		-host "smtp.no-where-no-no.com" \
 		-port 465 \
 		-user "acc12345_from.not.exist" \
@@ -53,7 +53,7 @@ You can download the latest JAR file here: https://github.com/fuinorg/sjsm/relea
 
 ## HTML example
 
-	java -jar sjsm-0.2.0-SNAPSHOT.jar \
+	java -jar sjsm-0.2.0.jar \
 		-host "smtp.no-where-no-no.com" \
 		-port 465 \
 		-user "acc12345_from.not.exist" \
