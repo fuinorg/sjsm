@@ -40,8 +40,11 @@ public final class Config {
     @Option(name = "-user", usage = "User", metaVar = "USER", required = true)
     private String user;
 
-    @Option(name = "-pw", usage = "Password", metaVar = "PW", required = true)
+    @Option(name = "-pw", usage = "Password", metaVar = "PW")
     private String pw;
+
+    @Option(name = "-envPw", usage = "Name of an environment variable that contains the password", metaVar = "ENV_PW")
+    private String envPw;
 
     @Option(name = "-from", usage = "Sender", metaVar = "SEND", required = true)
     private String from;
@@ -147,6 +150,25 @@ public final class Config {
      */
     public void setPw(final String pw) {
         this.pw = pw;
+    }
+
+    /**
+     * Returns the name of an environment variable that contains the password.
+     *
+     * @return Environment variable with password.
+     */
+    public String getEnvPw() {
+        return envPw;
+    }
+
+    /**
+     * Sets the name of an environment variable that contains the password.
+     *
+     * @param envPw
+     *            Environment variable to use.
+     */
+    public void setEnvPw(final String envPw) {
+        this.envPw = envPw;
     }
 
     /**
@@ -440,7 +462,13 @@ public final class Config {
     public Authenticator createAuthenticator() {
         return new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(user, pw);
+                final String p;
+                if (pw == null) {
+                    p = System.getenv(envPw);
+                } else {
+                    p = pw;
+                }
+                return new PasswordAuthentication(user, p);
             }
         };
     }

@@ -6,7 +6,7 @@ A simple command line application for sending mails.
 [![Java Development Kit 11](https://img.shields.io/badge/JDK-11-green.svg)](https://openjdk.java.net/projects/jdk/11/)
 
 ## Versions
-- 0.2.x = **Java 11** with new 'jakarta' namespace
+- > 0.2.x = **Java 11** with new 'jakarta' namespace
 - 0.1.0 = **Java 8**
 
 ## Why?
@@ -25,19 +25,20 @@ You can download the latest JAR file here: https://github.com/fuinorg/sjsm/relea
 
 ## Command line arguments
 
-| Argument | Value                                                  | Required | Example                                                                                          |
-| -------- |--------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------|
-| -host | SMTPS server name                                      | yes | "smtp.no-where-no-no.com"                                                                        |
-| -port | SMTPS port number (SSL/TLS)                            | yes | 465                                                                                              |
-| -user | Your mailbox user                                      | yes | "acc12345_from.not.exist" or "from.not.exist@no-where-no-no.com" (depends on your mail provider) |
-| -pw | Your mailbox password                                  | yes | "xxxxxxx"                                                                                        |
-| -from | Sender's email address                                 | yes | "from.not.exist@no-where-no-no.com"                                                              |
-| -to | Receiver's email address (multiple separated with ";") | yes | "to.not.exist@no-where-no-no.com" or "jane.doe@no-where-no-no.com;john.doe@no-where-no-no.com"             |
-| -subject | Mail subject                                           | yes | "My subject"                                                                                     |
-| -message | Message body (TEXT or HTML)                            | yes | "&lt;html&gt;&lt;body&gt;&lt;h1&gt;This is a test mail&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;"     |
-| -html | -                                                      | no | -                                                                                                |
-| -charset | Mail encoding (defaults to "utf-8")                    | no | "utf-8"                                                                                          |
-| -important | Send High Priority Email (X-Priority flag)             | no | -                                                                                                |
+| Argument   | Value                                                               | Required | Example                                                                                          |
+|------------|---------------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------|
+| -host      | SMTPS server name                                                   | yes      | "smtp.no-where-no-no.com"                                                                        |
+| -port      | SMTPS port number (SSL/TLS)                                         | yes      | 465                                                                                              |
+| -user      | Your mailbox user                                                   | yes      | "acc12345_from.not.exist" or "from.not.exist@no-where-no-no.com" (depends on your mail provider) |
+| -pw        | Your mailbox password (Either `pw`or `envPw` is mandatory)          | no       | -                                                                                                |
+| -envPw     | Name of an environment variable that contains your mailbox password | no       | -                                                                                                |
+| -from      | Sender's email address                                              | yes      | "from.not.exist@no-where-no-no.com"                                                              |
+| -to        | Receiver's email address (multiple separated with ";")              | yes      | "to.not.exist@no-where-no-no.com" or "jane.doe@no-where-no-no.com;john.doe@no-where-no-no.com"   |
+| -subject   | Mail subject                                                        | yes      | "My subject"                                                                                     |
+| -message   | Message body (TEXT or HTML)                                         | yes      | "&lt;html&gt;&lt;body&gt;&lt;h1&gt;This is a test mail&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;"     |
+| -html      | -                                                                   | no       | -                                                                                                |
+| -charset   | Mail encoding (defaults to "utf-8")                                 | no       | "utf-8"                                                                                          |
+| -important | Send High Priority Email (X-Priority flag)                          | no       | -                                                                                                |
 
 ## TEXT example
 
@@ -65,7 +66,8 @@ You can download the latest JAR file here: https://github.com/fuinorg/sjsm/relea
 		-html \
 
 ## CAUTION
-<b>Be aware that passing your password via the command line will most probably be visible in your command line history.</b>
+:warning: Be aware that passing your password via the command line (`-pw`) will most probably be visible in your command line history.
+It's better to use an environment variable with `-envPw`.
 
 * * *
 

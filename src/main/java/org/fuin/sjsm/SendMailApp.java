@@ -66,6 +66,16 @@ public final class SendMailApp {
 
     }
 
+    private static void ensurePasswordIsSet(final CmdLineParser parser , final Config config) throws CmdLineException {
+        if (config.getPw() == null && config.getEnvPw() == null) {
+            throw new CmdLineException(parser, Messages.MISSING_PASSWORD_OPTION);
+        }
+        if (config.getEnvPw() != null && System.getenv(config.getEnvPw()) == null) {
+            throw new CmdLineException(parser, Messages.PASSWORD_ENV_VAR_NOT_SET, config.getEnvPw());
+        }
+    }
+
+
     /**
      * Main application method.
      * 
@@ -78,6 +88,7 @@ public final class SendMailApp {
         final CmdLineParser parser = new CmdLineParser(config);
         try {
             parser.parseArgument(args);
+            ensurePasswordIsSet(parser, config);
             new SendMailApp().send(config);
             System.exit(0);
         } catch (final CmdLineException ex) {
